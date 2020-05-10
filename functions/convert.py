@@ -6,7 +6,9 @@ class Convert:
     def convert(selection = 1):
         results = []
         data = FileReader.read(selection)
+        data_list = []
         for i in range(0,len(data),54):
+            full_data = data[:54]
             ip_header = data[i+14:i+34]
             ip_hdr= struct.unpack("!BBHHHBBH4s4s",ip_header)
             tcp_header = data[i+34:i+54]
@@ -20,4 +22,5 @@ class Convert:
             else:
                 protocol = 'UDP'
             results.append([protocol,str(sa),str(da),str(dp)])
-        return results
+            data_list.append(full_data)
+        return results,data_list

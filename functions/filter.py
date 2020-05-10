@@ -9,10 +9,12 @@ class FilterActions:
     @staticmethod
     def filter():
         rules = FileReader.read_config()
-        data_ = Convert.convert()
+        data_,data_list = Convert.convert()
         # print(len(data_))
         checked = []
+        accepted_data = []
         result = False
+        count = 0
         for data in data_:
             for rule in rules[:-1]:
                 for element in range(1,len(rule)):
@@ -25,13 +27,16 @@ class FilterActions:
                         # print(rule[element],data[element-1],FilterActions.checkport(rule[element],data[element-1]))
                         result = result and FilterActions.checkport(rule[element],data[element-1])
                 if(result == True):
-                    print(result,rule[0])
+                    # print(result,rule[0])
                     checked.append(rule[0])
+                    accepted_data.append(data_list[count])
+                    
                     break
             else:
-                print(result,rules[-1][0])
+                # print(result,rules[-1][0])
                 checked.append(rules[-1][0])
-        return data_,checked
+            count+=1
+        return data_,checked,accepted_data
 
     @staticmethod
     def checkIP(ip1,ip2):
