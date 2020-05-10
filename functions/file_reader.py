@@ -9,7 +9,7 @@ class FileReader:
         '''
         # print(selection)
         script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
-        rel_path = "../data/input_interface_"+str(selection)+".txt"
+        rel_path = "../data/interface_"+str(selection)+".txt"
         filename = os.path.join(script_dir, rel_path)
         # Open a file
         fo = open(filename, "rb")
@@ -46,7 +46,7 @@ class FileReader:
         # print('list',list_)
         try:
             script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
-            rel_path = "../data/input_interface_"+str(selection)+".txt"
+            rel_path = "../data/interface_"+str(selection)+".txt"
             filename = os.path.join(script_dir, rel_path)
             # Open a file
             fo = open(filename, "ab")
